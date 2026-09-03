@@ -222,8 +222,6 @@ button{font:inherit}
 .sound:hover{background:rgba(0,0,0,.72);transform:scale(1.06)}
 .sound svg{width:19px;height:19px;fill:currentColor}
 .sound .muted-slash{display:block}
-.sound-label{display:none;white-space:nowrap}
-@media(max-width:900px){.sound-label{display:inline}}
 .sound[aria-pressed="true"] .muted-slash{display:none}
 
 /* ---- optional: full-bleed background video ----
@@ -269,50 +267,6 @@ button{font:inherit}
   .hero p{margin-inline:auto}
   .hero-actions,.hero-stats{justify-content:center}
   .badge{right:-4px;width:96px;height:96px}
-
-  /* ---- mobile hero ----
-     The video stops being a cropped background and becomes its own block
-     below the text, so the whole frame is visible. */
-  .hero{
-    display:flex;flex-direction:column;
-    padding-block:clamp(26px,7vw,44px) 0;min-height:0;
-  }
-  .hero-grid{order:1}
-  .hero-tint{display:none}
-  .bgvideo{
-    order:2;position:static;inset:auto;
-    width:calc(100% - 2*var(--pad));margin:26px auto 0;
-    height:auto;aspect-ratio:16/9;object-fit:contain;
-    border-radius:16px;background:#0C0C0E;
-    box-shadow:0 18px 40px rgba(0,0,0,.32);
-  }
-  .sound{
-    order:3;position:static;align-self:center;
-    margin:16px auto 4px;width:auto;height:auto;
-    display:inline-flex;align-items:center;gap:9px;
-    padding:12px 22px;border-radius:999px;
-    border:2px solid rgba(255,255,255,.55);background:transparent;
-    font-size:.88rem;font-weight:700;
-  }
-  .wave{order:4;position:static;margin-top:20px}
-
-  /* text sizing so the headline stops taking three lines */
-  .hero h1{font-size:clamp(2.05rem,8.4vw,2.9rem)}
-  .hero p{font-size:.97rem;max-width:34ch}
-  .hero-actions{gap:10px;margin-top:24px}
-  .hero-actions .btn{padding:12px 22px;font-size:.9rem}
-  /* stats side by side instead of a tall stack */
-  .hero-stats{
-    display:grid;grid-template-columns:repeat(3,1fr);
-    gap:10px;margin-top:26px;text-align:center;
-  }
-  .hero-stats b{font-size:1.24rem}
-  .hero-stats span{font-size:.7rem;line-height:1.3;display:block}
-}
-@media(max-width:420px){
-  .hero h1{font-size:1.95rem}
-  .hero-stats b{font-size:1.08rem}
-  .hero-stats span{font-size:.66rem}
 }
 
 /* ============================================================
@@ -481,9 +435,20 @@ button{font:inherit}
 .certs{background:var(--paper);border-top:1px solid var(--line)}
 .cert-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:52px}
 .cert{
+  display:flex;flex-direction:column;
   background:#fff;border:1px solid var(--line);border-radius:var(--r-sm);
-  padding:24px 22px;
+  padding:24px 22px;text-decoration:none;color:inherit;
+  transition:border-color .22s ease,transform .22s ease,box-shadow .22s ease;
 }
+a.cert:hover{
+  border-color:var(--red);transform:translateY(-3px);
+  box-shadow:0 14px 30px rgba(0,0,0,.07);
+}
+.cert .view{
+  margin-top:auto;padding-top:16px;font-size:.78rem;font-weight:700;color:var(--red);
+  display:inline-flex;align-items:center;gap:6px;
+}
+a.cert:hover .view{text-decoration:underline}
 .cert .issuer{font-size:.74rem;font-weight:700;color:var(--red);margin-bottom:10px}
 .cert h3{font-size:1rem;font-weight:700;line-height:1.4}
 .cert time{display:block;margin-top:12px;font-size:.8rem;color:var(--ink-soft)}
@@ -637,6 +602,7 @@ button{font:inherit}
       <li><a href="#education">Education</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#research">Research</a></li>
+      <li><a href="#certifications">Certifications</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -676,7 +642,6 @@ button{font:inherit}
       <path d="M16.5 8.5a5 5 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
       <path class="muted-slash" d="M3 2.5 21.5 21l-1.4 1.4L1.6 3.9z"></path>
     </svg>
-    <span class="sound-label">Play with sound</span>
   </button>
 
   <div class="wave" aria-hidden="true">
@@ -949,6 +914,62 @@ button{font:inherit}
   </div>
 </section>
 
+<!-- ========================= CERTIFICATIONS ========================= -->
+<section class="section certs" id="certifications">
+  <div class="shell">
+    <div class="reveal">
+      <p class="eyebrow">Credentials</p>
+      <h2 class="h2">Certifications</h2>
+      <p class="lede">Coursework, job simulations and workshops. Every card links to the certificate.</p>
+    </div>
+
+    <div class="cert-grid">
+      <a class="cert reveal" href="https://drive.google.com/file/d/1HFDowAUvK26GJFWfhBXMKtCXbkOIgPLW/view" target="_blank" rel="noopener">
+        <p class="issuer">IBM</p>
+        <h3>Big Data Foundation</h3>
+        <span class="view">View certificate &rarr;</span>
+      </a>
+
+      <a class="cert reveal" href="https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/9PBTqmSxAf6zZTseP/io9DzWKe3PTsiS6GG_9PBTqmSxAf6zZTseP_88ZM3N6j42PDLxKeB_1748850764089_completion_certificate.pdf" target="_blank" rel="noopener">
+        <p class="issuer">Deloitte</p>
+        <h3>Data Analytics Job Simulation</h3>
+        <span class="view">View certificate &rarr;</span>
+      </a>
+
+      <a class="cert reveal" href="https://drive.google.com/file/d/1VfYKY7iGc17XbcrdFyndLzzXD51KzGDG/view" target="_blank" rel="noopener">
+        <p class="issuer">JPMorgan Chase</p>
+        <h3>Software Engineering Job Simulation</h3>
+        <span class="view">View certificate &rarr;</span>
+      </a>
+
+      <a class="cert reveal" href="https://drive.google.com/file/d/1puTh54Xw-y-6XuYeAbbZQVIl6ZLHTmGZ/view" target="_blank" rel="noopener">
+        <p class="issuer">AWS</p>
+        <h3>AWS Cloud Hands-On Activity</h3>
+        <span class="view">View certificate &rarr;</span>
+      </a>
+
+      <a class="cert reveal" href="https://drive.google.com/file/d/1_BDw_Gz2w0o0U7DJFSV7ZzwlvjS-bsnc/view" target="_blank" rel="noopener">
+        <p class="issuer">Workshop</p>
+        <h3>Python with Applications &amp; Cloud Deployment</h3>
+        <span class="view">View certificate &rarr;</span>
+      </a>
+
+      <a class="cert reveal" href="https://drive.google.com/file/d/1tdbQuuJFlVzYesOORu3fWocDU04LOlhY/view" target="_blank" rel="noopener">
+        <p class="issuer">Workshop</p>
+        <h3>Real-World Interfacing with Arduino Uno on IoT Platform</h3>
+        <span class="view">View certificate &rarr;</span>
+      </a>
+
+      <a class="cert reveal" href="https://drive.google.com/file/d/1ObBGZk8H33J7dGCg59a5sc0P3EmOuiVB/view" target="_blank" rel="noopener">
+        <p class="issuer">Cyber Secure India 2021</p>
+        <h3>Cyber Ninja</h3>
+        <time>2021</time>
+        <span class="view">View certificate &rarr;</span>
+      </a>
+    </div>
+  </div>
+</section>
+
 <!-- ========================= CONTACT ========================= -->
 <section class="section contact on-red" id="contact">
   <span class="ghost-word" aria-hidden="true">CONTACT</span>
@@ -961,7 +982,7 @@ button{font:inherit}
         <li><small>Email</small><a href="mailto:rajattiwari002@gmail.com">rajattiwari002@gmail.com</a></li>
         <li><small>Phone</small><a href="tel:+15512008799">+1 551-200-8799</a></li>
         <li><small>GitHub</small><a href="https://github.com/rjfreaks">github.com/rjfreaks</a></li>
-        <li><small>LinkedIn</small><a href="https://linkedin.com/in/rajattiwari">linkedin.com/in/rajattiwari</a></li>
+        <li><small>LinkedIn</small><a href="https://www.linkedin.com/in/rajat-tiwari0629/" target="_blank" rel="noopener">linkedin.com/in/rajat-tiwari0629</a></li>
         <li><small>Location</small><span>New York, NY</span></li>
       </ul>
     </div>
@@ -1044,8 +1065,6 @@ if (vid) {
     const on = !vid.muted;
     soundBtn.setAttribute('aria-pressed', on);
     soundBtn.setAttribute('aria-label', on ? 'Turn sound off' : 'Turn sound on');
-    const lbl = soundBtn.querySelector('.sound-label');
-    if (lbl) lbl.textContent = on ? 'Mute' : 'Play with sound';
     vid.play().catch(() => {});
   });
 
