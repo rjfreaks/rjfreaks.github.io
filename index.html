@@ -267,6 +267,14 @@ button{font:inherit}
   .hero p{margin-inline:auto}
   .hero-actions,.hero-stats{justify-content:center}
   .badge{right:-4px;width:96px;height:96px}
+
+  /* A 16:9 clip has to zoom hard to cover a tall screen, which cut his face.
+     Shorten the hero and frame on his head so the whole face stays visible. */
+  .hero{min-height:0;padding-block:clamp(30px,8vw,52px) clamp(70px,14vw,110px)}
+  .bgvideo{object-position:center 8%}
+  .hero-tint{
+    background:linear-gradient(180deg,rgba(150,0,26,.92) 0%,rgba(175,0,32,.78) 40%,rgba(150,0,26,.72) 100%);
+  }
 }
 
 /* ============================================================
